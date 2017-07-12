@@ -1,0 +1,62 @@
+CREATE PROCEDURE ExcluirContatoPorId
+(
+	@Id int
+)
+
+as
+
+begin 
+	Delete From Contato where Id = @Id 
+end
+
+exec ExcluirContatoPorId @Id = 1
+
+
+CREATE PROCEDURE AtualizarContato
+(
+	@Id int,
+	@Nome nvarchar(100),
+	@Telefone nvarchar(12),
+	@Email nvarchar(50)
+)
+
+as
+
+begin 
+	Update Contato Set Nome = @Nome,
+	Telefone = @Telefone, Email = @Email
+	Where Id = @Id
+end
+
+exec AtualizarContato @Id = 1, @Nome = 'Cristina Souza', @Telefone = '113474-2147', @Email = 'cristina.souza@com.br'
+
+CREATE PROCEDURE IncluirContato
+(
+	@Nome nvarchar(100),
+	@Telefone nvarchar(12),
+	@Email nvarchar(50)
+
+)
+
+as
+
+begin 
+	Insert Into Contato Values(@Nome, @Telefone, @Email)
+end
+
+exec IncluirContato @Nome = 'Wedson Pereira de Souza', @Telefone = '115632-4454', @Email = 'wedson.souza@com.br'
+exec IncluirContato @Nome = 'Maria do Carmo', @Telefone = '2145789632', @Email = 'maria.carmo@com.br'
+
+
+//Obs: Para executar a procedure do Select não preciso do comando exec é só selecionar o nome da procedure e executar.
+CREATE PROCEDURE ObterContato
+
+as
+
+begin 
+	Select Id, Nome, Telefone, Email From Contato
+end
+
+
+Para criar o Controler foi utilizado o MVC 5 Controller Empty.
+No outro projeto utilizei o MVC 5 Controller with views, using Entity Framework

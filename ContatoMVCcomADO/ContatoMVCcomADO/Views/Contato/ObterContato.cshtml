@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ContatoMVCcomADO.Models.Contato>
+
+<p>
+    @Html.ActionLink("Adicionar novo contato", "IncluirContato")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "EditarContato", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "ExcluirContato", new { id = item.Id }, new { onclick = "return confirm('Tem certeza que deseja Excluir??');" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
